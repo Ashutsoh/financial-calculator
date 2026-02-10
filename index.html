@@ -279,6 +279,92 @@
       text-decoration: underline;
     }
 
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-content h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .modal-content h3 {
+      color: #667eea;
+      margin-top: 25px;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .modal-content p,
+    .modal-content ul {
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .modal-content ul {
+      padding-left: 20px;
+    }
+
+    .modal-content li {
+      margin-bottom: 10px;
+    }
+
+    .close-modal {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .close-modal:hover {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
@@ -290,6 +376,16 @@
 
       .input-group {
         grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        padding: 25px;
+        margin: 10px;
+        max-height: 90vh;
+      }
+
+      .modal-content h2 {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -535,11 +631,151 @@
 <footer>
   <p>&copy; 2026 Finance Calculator Suite. All rights reserved.</p>
   <div>
-    <a href="#privacy">Privacy Policy</a> |
-    <a href="#terms">Terms of Service</a> |
-    <a href="#disclaimer">Disclaimer</a>
+    <a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a> |
+    <a href="#" onclick="openModal('terms'); return false;">Terms of Service</a> |
+    <a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a>
   </div>
 </footer>
+
+<!-- Privacy Policy Modal -->
+<div id="privacy-modal" class="modal">
+  <div class="modal-content">
+    <h2>Privacy Policy</h2>
+    <p><strong>Last Updated: February 10, 2026</strong></p>
+    
+    <h3>1. Information We Collect</h3>
+    <p>Our Finance Calculator Suite is designed with your privacy in mind. All calculations are performed locally in your browser, and we do not collect, store, or transmit any of your financial data to external servers.</p>
+    
+    <h3>2. How We Use Information</h3>
+    <ul>
+      <li><strong>Calculations:</strong> All loan amounts, interest rates, and personal financial information entered into our calculators remain on your device only.</li>
+      <li><strong>No Tracking:</strong> We do not use cookies, analytics, or tracking technologies to monitor your usage.</li>
+      <li><strong>No Account Required:</strong> You can use all features without creating an account or providing personal information.</li>
+    </ul>
+    
+    <h3>3. Data Security</h3>
+    <p>Since all calculations happen in your browser and no data is transmitted to our servers, your financial information remains completely private and secure on your device.</p>
+    
+    <h3>4. Third-Party Services</h3>
+    <p>This calculator does not integrate with any third-party services, APIs, or external databases. Your data stays with you.</p>
+    
+    <h3>5. Children's Privacy</h3>
+    <p>Our service does not knowingly collect information from children under 13. The calculator is designed for general use and does not require any personal information.</p>
+    
+    <h3>6. Changes to Privacy Policy</h3>
+    <p>We may update this privacy policy from time to time. Any changes will be reflected with an updated "Last Updated" date.</p>
+    
+    <h3>7. Contact Us</h3>
+    <p>If you have any questions about this Privacy Policy, please contact us through our website.</p>
+    
+    <button class="close-modal" onclick="closeModal('privacy')">Close</button>
+  </div>
+</div>
+
+<!-- Terms of Service Modal -->
+<div id="terms-modal" class="modal">
+  <div class="modal-content">
+    <h2>Terms of Service</h2>
+    <p><strong>Last Updated: February 10, 2026</strong></p>
+    
+    <h3>1. Acceptance of Terms</h3>
+    <p>By accessing and using the Finance Calculator Suite, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+    
+    <h3>2. Use License</h3>
+    <ul>
+      <li>Permission is granted to use this calculator for personal, non-commercial purposes.</li>
+      <li>You may not modify, distribute, or create derivative works based on this calculator without permission.</li>
+      <li>This is the grant of a license, not a transfer of title.</li>
+    </ul>
+    
+    <h3>3. Disclaimer of Warranties</h3>
+    <p>The calculator is provided "as is" without warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+    
+    <h3>4. Accuracy of Calculations</h3>
+    <ul>
+      <li>While we strive for accuracy, we do not guarantee that all calculations are error-free.</li>
+      <li>Results should be used as estimates only and verified with financial professionals.</li>
+      <li>Users are responsible for verifying all calculations independently.</li>
+    </ul>
+    
+    <h3>5. Limitation of Liability</h3>
+    <p>In no event shall Finance Calculator Suite or its creators be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the calculator.</p>
+    
+    <h3>6. User Responsibilities</h3>
+    <ul>
+      <li>You are responsible for ensuring that any financial decisions are made in consultation with qualified professionals.</li>
+      <li>Do not rely solely on calculator results for major financial decisions.</li>
+      <li>Verify all calculations with your lender or financial advisor.</li>
+    </ul>
+    
+    <h3>7. Modifications to Service</h3>
+    <p>We reserve the right to modify or discontinue the service at any time without notice.</p>
+    
+    <h3>8. Governing Law</h3>
+    <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to its conflict of law provisions.</p>
+    
+    <button class="close-modal" onclick="closeModal('terms')">Close</button>
+  </div>
+</div>
+
+<!-- Disclaimer Modal -->
+<div id="disclaimer-modal" class="modal">
+  <div class="modal-content">
+    <h2>Disclaimer</h2>
+    <p><strong>Last Updated: February 10, 2026</strong></p>
+    
+    <h3>General Information Only</h3>
+    <p>The Finance Calculator Suite provides general financial calculations for informational and educational purposes only. The information provided should not be considered as financial, legal, or professional advice.</p>
+    
+    <h3>Not Financial Advice</h3>
+    <ul>
+      <li>Results from this calculator are <strong>estimates only</strong> and may not reflect actual loan terms, interest rates, or fees from lenders.</li>
+      <li>This tool does not constitute financial advice or recommendations.</li>
+      <li>We are not financial advisors, and this calculator should not replace professional financial guidance.</li>
+    </ul>
+    
+    <h3>Accuracy and Completeness</h3>
+    <ul>
+      <li>While we make every effort to ensure accuracy, we cannot guarantee that all calculations are completely accurate or up-to-date.</li>
+      <li>Interest rates, GST rates, and lending terms change frequently and may differ from those used in calculations.</li>
+      <li>Actual loan terms may include additional fees, charges, or conditions not reflected in these calculations.</li>
+    </ul>
+    
+    <h3>No Guarantee of Results</h3>
+    <p>We make no guarantees regarding:</p>
+    <ul>
+      <li>Loan approval or eligibility based on calculator results</li>
+      <li>Accuracy of interest rates or terms shown</li>
+      <li>Tax benefits or deductions (consult a tax professional)</li>
+      <li>Actual EMI amounts from lenders</li>
+    </ul>
+    
+    <h3>Consult Professionals</h3>
+    <p>Always consult with qualified professionals before making financial decisions:</p>
+    <ul>
+      <li><strong>Financial Advisors:</strong> For investment and loan advice</li>
+      <li><strong>Tax Consultants:</strong> For tax-related queries and benefits</li>
+      <li><strong>Legal Advisors:</strong> For contract and legal matters</li>
+      <li><strong>Bank Representatives:</strong> For actual loan terms and conditions</li>
+    </ul>
+    
+    <h3>Regional Variations</h3>
+    <p>Financial regulations, tax laws, and lending practices vary by country and region. This calculator may not account for all regional differences. Please verify all information with local authorities and institutions.</p>
+    
+    <h3>No Liability</h3>
+    <p>By using this calculator, you acknowledge that:</p>
+    <ul>
+      <li>You are using this tool at your own risk</li>
+      <li>We are not responsible for any financial decisions made based on calculator results</li>
+      <li>We are not liable for any losses or damages arising from the use of this calculator</li>
+    </ul>
+    
+    <h3>Educational Purpose</h3>
+    <p>This calculator is designed to help you understand how various financial calculations work and to estimate potential costs. It is an educational tool and starting point for your financial planning, not a substitute for professional advice.</p>
+    
+    <button class="close-modal" onclick="closeModal('disclaimer')">Close</button>
+  </div>
+</div>
 
 <script>
   function showCalculator(type) {
@@ -563,6 +799,34 @@
       section.classList.remove('active');
     });
     document.getElementById('calculator-grid').style.display = 'grid';
+  }
+
+  function openModal(type) {
+    const modalMap = {
+      'privacy': 'privacy-modal',
+      'terms': 'terms-modal',
+      'disclaimer': 'disclaimer-modal'
+    };
+    document.getElementById(modalMap[type]).classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(type) {
+    const modalMap = {
+      'privacy': 'privacy-modal',
+      'terms': 'terms-modal',
+      'disclaimer': 'disclaimer-modal'
+    };
+    document.getElementById(modalMap[type]).classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
   }
 
   function formatCurrency(amount) {
