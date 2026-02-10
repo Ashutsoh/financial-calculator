@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astounding-cassata-94a4b0.netlify.app/sitemap.xml
